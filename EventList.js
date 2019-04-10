@@ -58,7 +58,7 @@ class EventList extends Component {
       />,
       <ActionButton
         key="fab"
-        onPress={this.handleAddEvent}
+        onPress={() => navigate('form'})}
         buttonColor="rgba(231, 76, 60, 1)"
       />
     ];

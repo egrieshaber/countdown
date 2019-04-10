@@ -9,7 +9,7 @@ class EventForm extends Component {
   handAddPress = () => {
     // ?
   }
-  
+
   render() {
     return (
       <View>
