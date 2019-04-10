@@ -1,8 +1,15 @@
 import React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
 import EventList from './EventList'
+import { StackNavigator } from 'react-navigation';
+import { YellowBox } from 'react-native';
+
+YellowBox.ignoreWarnings([
+  'Warning: componentWillMount is depreciated',
+  'Warning componentWillRecieveProps is depreciated'
+]);
 
 export default class App extends React.Component {
   state = {
