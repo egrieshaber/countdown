@@ -60,9 +60,9 @@ class EventForm extends Component {
     this.setState({ showDatePicker: true });
   };
 
-  handleDatePicked = (datetime) => {
+  handleDatePicked = (date) => {
     this.setSate({
-      datetime,
+      date,
     });
 
     this.handleDatePickerHide();
@@ -82,7 +82,7 @@ class EventForm extends Component {
         <View style={styles.fieldContainer}>
           <TextInput
             style={styles.text}
-            placeholder="Event title"
+            placeholder="Event Title"
             spellCheck={false}
             value={this.state.title}
             onChangeText={this.handleChangeTitle}
