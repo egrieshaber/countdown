@@ -3,6 +3,7 @@ import {
   View,
   Text,
   TouchableHighlight,
+  TouchableOpacity,
   TextInput,
   StyleSheet
 } from 'react-native';
@@ -44,7 +45,8 @@ const styles = StyleSheet.create({
 class EventForm extends Component {
   state = {
     title: null,
-    date: '',
+    datetime: '',
+    isDateTimePickerVisible: false
   };
 
   handleAddPress = () => {
@@ -57,20 +59,32 @@ class EventForm extends Component {
   };
 
   handleDatePress = () => {
-    this.setState({ showDatePicker: true });
+    this.setState({ isDateTimePickerVisible: true });
   };
 
-  handleDatePicked = (date) => {
-    this.setSate({
-      date,
+  // handleDatePicked = (date) => {
+  //   this.setSate({
+  //     date,
+  //   });
+  //
+  //   this.handleDatePickerHide();
+  // }
+  //
+  // handleDatePickerHide = () => {
+  //   this.setState({ showDatePicker: false });
+  // }
+
+  _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
+
+  _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
+
+  _handleDatePicked = (datetime) => {
+    console.log('A datetime has been picked: ', datetime);
+    this.setState({
+      datetime,
     });
-
-    this.handleDatePickerHide();
-  }
-
-  handleDatePickerHide = () => {
-    this.setState({ showDatePicker: false });
-  }
+    this._hideDateTimePicker();
+  };
 
   render() {
     return (
@@ -91,15 +105,15 @@ class EventForm extends Component {
             style={[styles.text, styles.borderTop]}
             placeholder="Event Date"
             spellCheck={false}
-            value={formatDate(this.state.date.toString())}
-            editable={!this.state.showDatePicker}
+            value={formatDate(this.state.datetime.toString())}
+            editable={!this.state._showDateTimePicker}
             onFocus={this.handleDatePress}
+            onPress={this._showDateTimePicker}
           />
         <DateTimePicker
-            isVisible={this.state.showDatePicker}
-            mode="datetime"
-            onConfirm={this.handleDatePicked}
-            onCancel={this.handleDatePickerHide}
+            isVisible={this.state.isDateTimePickerVisible}
+            onConfirm={this._handleDatePicked}
+            onCancel={this._hideDateTimePicker}
           />
         </View>
         <TouchableHighlight
