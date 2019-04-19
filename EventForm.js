@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
 class EventForm extends Component {
   state = {
     title: null,
-    datetime: '',
+    date: '',
     isDateTimePickerVisible: false
   };
 
@@ -78,10 +78,10 @@ class EventForm extends Component {
 
   _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
 
-  _handleDatePicked = (datetime) => {
-    console.log('A datetime has been picked: ', datetime);
+  _handleDatePicked = (date) => {
+    console.log('A datetime has been picked: ', date);
     this.setState({
-      datetime,
+      date,
     });
     this._hideDateTimePicker();
   };
@@ -105,7 +105,7 @@ class EventForm extends Component {
             style={[styles.text, styles.borderTop]}
             placeholder="Event Date"
             spellCheck={false}
-            value={formatDate(this.state.datetime.toString())}
+            value={formatDate(this.state.date.toString())}
             editable={!this.state._showDateTimePicker}
             onFocus={this.handleDatePress}
             onPress={this._showDateTimePicker}
